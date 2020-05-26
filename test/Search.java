@@ -14,7 +14,7 @@ public class Search {
     public static void searchPage(WebDriver driver) throws InterruptedException, IOException {
         String[] keys = Data.Search.searchKeywords();
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='Toastify__toast-container Toastify__toast-container--bottom-left Toastify__toast-container--rtl']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Data.Search.getSearchToastELM())));
 
         for (int i = 0; i < keys.length; i++) {
             sendKey(keys[i], driver);
@@ -31,7 +31,7 @@ public class Search {
             System.out.println("SK.IFB.page url: " + driver.getCurrentUrl());
             Waiter.setDriver(driver);
             Waiter.waitUntilJSReady();
-            searchbar_field = driver.findElement(By.xpath(Data.Search.getSearchbar_fieldELM()));
+            searchbar_field = driver.findElement(By.xpath(Data.Search.getSearchbarFieldELM()));
             searchbar_field.click();
             searchbar_field.sendKeys(Keys.chord(Keys.CONTROL, "a"));
             searchbar_field.sendKeys(Keys.DELETE);
@@ -42,8 +42,8 @@ public class Search {
             Waiter.setDriver(driver);
             Waiter.waitUntilJSReady();
             WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Data.Search.getSearchbarELM())));
-            searchbar = driver.findElement(By.xpath(Data.Search.getSearchbarELM()));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Data.Search.getSearchbarElm())));
+            searchbar = driver.findElement(By.xpath(Data.Search.getSearchbarElm()));
             searchbar.click();
             searchbar.sendKeys(keyword);
             searchbar.sendKeys(Keys.ENTER);

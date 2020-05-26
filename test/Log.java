@@ -13,4 +13,12 @@ public class Log {
     public static void currentTitle_print(WebDriver driver) {
         System.out.println("at: " + System.currentTimeMillis() + "page title: " + driver.getTitle());
     }
+
+    public static void println(String log) {
+        System.out.println(log);
+    }
+
+    public static void print(String log) {
+        System.out.print(log);
+    }
 }

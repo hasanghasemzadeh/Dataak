@@ -1,6 +1,8 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Waiter {
@@ -141,5 +143,15 @@ public class Waiter {
     public static void sleep (Integer seconds) throws InterruptedException {
         long secondsLong = seconds * 1000;
         Thread.sleep(secondsLong);
+    }
+
+    public static void waitAfterLogin(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Data.Search.getSearchToastELM())));
+    }
+
+    public static void waitForElement(WebDriver driver, Long timeOut, String elementXpath) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOut);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(elementXpath)));
     }
 }

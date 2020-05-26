@@ -10,28 +10,28 @@ public class Login {
 
     public static void doLogin(WebDriver driver) {
         // open page, change window size, declare webElements local properties and wait for ajax response complete
-        driver.get("https://dashboard.dataak.com/");
+        driver.get(Data.Login.getLoginUrl());
         driver.manage().window().setSize(new Dimension(1647, 912));
         WebElement userName, password, rememberMe, enterBtn;
         Waiter.setDriver(driver);
         Waiter.waitUntilJSReady();
 
         // find user input element and filling it
-        userName = driver.findElement(By.xpath("//input[@type='text' and @placeholder='نام کاربری یا ایمیل' and @class='ant-input']"));
+        userName = driver.findElement(By.xpath(Data.Login.getUserNameELM()));
         userName.click();
-        userName.sendKeys(Data.getUserName());
+        userName.sendKeys(Data.Login.getUserName());
 
         // find password input element and filling it
-        password = driver.findElement(By.xpath("//input[@id='password' and @placeholder='رمز عبور' and @class='ant-input' and @type='password']"));
+        password = driver.findElement(By.xpath(Data.Login.getPasswordELM()));
         password.click();
-        password.sendKeys(Data.getPassword());
+        password.sendKeys(Data.Login.getPassword());
 
         // find checkbox and click it
-        rememberMe = driver.findElement(By.xpath("//input[@id='remember' and @type='checkbox' and @class='ant-checkbox-input']"));
+        rememberMe = driver.findElement(By.xpath(Data.Login.getRememberELM()));
         rememberMe.click();
 
         // finally find entry btn and click it
-        enterBtn = driver.findElement(By.xpath("//button[@type='submit' and @class='ant-btn login-form-button button ant-btn-primary']"));
+        enterBtn = driver.findElement(By.xpath(Data.Login.getEnterBtnELM()));
         enterBtn.click();
     }
 
@@ -53,18 +53,18 @@ public class Login {
         Waiter.waitUntilJSReady();
 
         // find user input element and filling it by user param
-        userName = driver.findElement(By.xpath("//input[@type='text' and @placeholder='نام کاربری یا ایمیل' and @class='ant-input']"));
+        userName = driver.findElement(By.xpath(Data.Login.getUserNameELM()));
         userName.click();
         userName.sendKeys(user);
 
         // find password input element and filling it by pass param
-        password = driver.findElement(By.xpath("//input[@id='password' and @placeholder='رمز عبور' and @class='ant-input' and @type='password']"));
+        password = driver.findElement(By.xpath(Data.Login.getPasswordELM()));
         password.click();
         password.sendKeys(pass);
 
         // check remember param, if it's true find checkbox and click it, else log this notice to console
         if (remember) {
-            rememberMe = driver.findElement(By.xpath("//input[@id='remember' and @type='checkbox' and @class='ant-checkbox-input']"));
+            rememberMe = driver.findElement(By.xpath(Data.Login.getRememberELM()));
             rememberMe.click();
             Log.println("remember checked");
         } else {
@@ -72,7 +72,7 @@ public class Login {
         }
 
         // finally find entry btn and click it
-        enterBtn = driver.findElement(By.xpath("//button[@type='submit' and @class='ant-btn login-form-button button ant-btn-primary']"));
+        enterBtn = driver.findElement(By.xpath(Data.Login.getEnterBtnELM()));
         enterBtn.click();
 
         Waiter.setDriver(driver);
